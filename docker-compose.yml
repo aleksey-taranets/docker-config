@@ -1,0 +1,13 @@
+version: '3'
+services:
+  frontent-spa:
+    env_file: ${ENV_FILE}
+    build:
+      context: ./frontend-spa
+      dockerfile: ${DOCKER_FILE}
+      args:
+        - WORK_DIR=${WORK_DIR}
+    volumes:
+      - './frontend-spa:${WORK_DIR}'
+    ports:
+      - '${SPA_PORT}:80'
