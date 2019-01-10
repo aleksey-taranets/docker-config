@@ -1,9 +1,8 @@
 # Image
 FROM node:10-alpine
 
-# Dev environment arguments
+# Environment arguments
 ARG WORK_DIR
-ENV PORT=80
 
 # Set up app directory
 WORKDIR $WORK_DIR
@@ -16,4 +15,4 @@ COPY yarn.lock ./
 RUN yarn
 
 # run application
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]

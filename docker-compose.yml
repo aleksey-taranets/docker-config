@@ -1,5 +1,17 @@
 version: '3'
 services:
+  backend:
+    env_file: ${ENV_FILE}
+    build:
+      context: ./backend
+      dockerfile: ${DOCKER_FILE}
+      args:
+        - WORK_DIR=${WORK_DIR}
+    volumes:
+      - './backend:${WORK_DIR}'
+    ports:
+      - '${BACKEND_PORT}:80'
+
   frontent-spa:
     env_file: ${ENV_FILE}
     build:
@@ -11,3 +23,15 @@ services:
       - './frontend-spa:${WORK_DIR}'
     ports:
       - '${SPA_PORT}:80'
+
+  # frontent-ssr:
+  #   env_file: ${ENV_FILE}
+  #   build:
+  #     context: ./frontend-ssr
+  #     dockerfile: ${DOCKER_FILE}
+  #     args:
+  #       - WORK_DIR=${WORK_DIR}
+  #   volumes:
+  #     - './frontend-ssr:${WORK_DIR}'
+  #   ports:
+  #     - '${SSR_PORT}:80'

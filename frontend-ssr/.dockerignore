@@ -6,3 +6,4 @@ build
 .git
 .hg
 .svn
+.next

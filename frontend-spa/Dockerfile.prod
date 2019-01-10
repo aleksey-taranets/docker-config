@@ -1,10 +1,8 @@
 # Build Image
-FROM node:11.6-alpine AS base
+FROM node:10-alpine AS base
 
 # Dev environment arguments
 ARG WORK_DIR
-
-# RUN npm i yarn -g
 
 # copy package files
 COPY package.json ./
@@ -18,7 +16,7 @@ COPY . ./
 # Build project
 RUN yarn build
 
-# Production Image
+#------------------------------ Production Image -------------------------------
 FROM nginx
 
 # Copy needed files
