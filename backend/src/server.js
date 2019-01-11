@@ -1,5 +1,5 @@
 import http from 'http';
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 80;
 const env = process.env.NODE_ENV || 'undefined';
 
 const server = http.createServer((req, res) => {

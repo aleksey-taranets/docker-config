@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/server.js",
+    "start": "node ./build/server.js",
     "dev": "npx nodemon --watch src dev.js",
-    "build": "npm run clean && babel -d ./build ./src -s",
-    "clean": "rimraf ./dist",
+    "build": "npx rimraf ./build && babel -d ./build ./src -s",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

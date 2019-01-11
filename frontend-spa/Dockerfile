@@ -1,12 +1,8 @@
-# Image
-FROM node:10-alpine
+# Build Image
+FROM node:10-alpine AS base
 
 # Dev environment arguments
 ARG WORK_DIR
-ENV PORT=80
-
-# Set up app directory
-WORKDIR $WORK_DIR
 
 # copy package files
 COPY package.json ./
@@ -15,5 +11,17 @@ COPY yarn.lock ./
 # install modules
 RUN yarn
 
-# run application
-CMD ["yarn", "start"]
+COPY . ./
+
+# Build project
+RUN yarn build
+
+#------------------------------ Production Image -------------------------------
+FROM nginx
+
+# Ports
+EXPOSE 80
+
+# Copy needed files
+COPY nginx.config /etc/nginx/conf.d/default.conf
+COPY --from=base build /usr/share/nginx/html

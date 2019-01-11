@@ -1,0 +1,13 @@
+version: '3'
+services:
+  backend:
+    volumes:
+      - './backend:${WORK_DIR}'
+
+  frontent-spa:
+    volumes:
+      - './frontend-spa:${WORK_DIR}'
+
+  frontent-ssr:
+    volumes:
+      - './frontend-ssr:${WORK_DIR}'

@@ -1,9 +1,9 @@
 node_modules
 .dockerignore
 Dockerfile
-npm-debug.log
 build
 .git
 .hg
 .svn
 .next
+*.log

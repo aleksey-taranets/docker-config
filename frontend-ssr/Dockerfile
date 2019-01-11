@@ -1,5 +1,5 @@
-# Image
-FROM node:10-alpine
+# Build Image
+FROM node:10-alpine AS base
 
 # Environment arguments
 ARG WORK_DIR
@@ -14,5 +14,33 @@ COPY yarn.lock ./
 # install modules
 RUN yarn
 
+COPY . ./
+
+# Build project
+RUN yarn build
+
+#------------------------------ Production Image -------------------------------
+FROM keymetrics/pm2:10-alpine
+
+# Environment arguments
+ARG WORK_DIR
+
+# Set up app directory
+WORKDIR $WORK_DIR
+
+# copy package files
+COPY package.json ./
+COPY yarn.lock ./
+COPY *.config.js ./
+
+# install modules
+RUN yarn --production
+
+# Copy needed files
+COPY --from=base /$WORK_DIR/build ./build
+
+# Ports
+EXPOSE 80
+
 # run application
-CMD ["yarn", "dev"]
+CMD ["pm2-runtime", "start", "pm2.config.js"]
