@@ -16,4 +16,4 @@ COPY yarn.lock ./
 RUN yarn
 
 # run application
-CMD ["node", "./dev.js"]
+CMD ["yarn", "run", "dev"]

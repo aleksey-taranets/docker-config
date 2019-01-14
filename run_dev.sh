@@ -1,1 +1,1 @@
-docker-compose -p DevEnv -f docker-compose.yml -f docker-compose.local.yml up --build
+docker-compose -p DevEnv -f docker-compose.local.yml -f docker-compose.yml up --build

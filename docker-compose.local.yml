@@ -2,12 +2,15 @@ version: '3'
 services:
   backend:
     volumes:
-      - './backend:${WORK_DIR}'
+      - './backend/src:${WORK_DIR}/src'
+      - './backend/dev.js:${WORK_DIR}/dev.js'
 
   frontent-spa:
     volumes:
-      - './frontend-spa:${WORK_DIR}'
+      - './frontend-spa/public:${WORK_DIR}/public'
+      - './frontend-spa/src:${WORK_DIR}/src'
 
   frontent-ssr:
     volumes:
-      - './frontend-ssr:${WORK_DIR}'
+      - './frontend-ssr/pages:${WORK_DIR}/pages'
+      - './frontend-ssr/next.config.js:${WORK_DIR}/next.config.js'
