@@ -1,10 +1,5 @@
 version: '3'
 services:
-  backend:
-    volumes:
-      - './backend/src:${WORK_DIR}/src'
-      - './backend/dev.js:${WORK_DIR}/dev.js'
-
   frontent-spa:
     volumes:
       - './frontend-spa/public:${WORK_DIR}/public'
@@ -14,3 +9,10 @@ services:
     volumes:
       - './frontend-ssr/pages:${WORK_DIR}/pages'
       - './frontend-ssr/next.config.js:${WORK_DIR}/next.config.js'
+
+  backend:
+    volumes:
+      - './backend/src:${WORK_DIR}/src'
+      - './backend/dev.js:${WORK_DIR}/dev.js'
+    ports:
+      - '${BACKEND_DEBUG_PORT}:9229'

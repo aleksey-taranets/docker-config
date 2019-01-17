@@ -5,7 +5,7 @@
   "main": "./build/server.js",
   "scripts": {
     "start": "node ./build/server.js",
-    "dev": "nodemon --watch src ./dev.js",
+    "dev": "nodemon --inspect=0.0.0.0 --watch src ./dev.js",
     "build": "rimraf ./build && babel -d ./build ./src -s",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,5 +30,9 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "mongodb": "^3.1.12",
+    "promise-retry": "^1.1.1"
   }
 }

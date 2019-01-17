@@ -1,7 +1,13 @@
 version: '3'
 services:
+  mongodb:
+    env_file: ${ENV_FILE}
+    image: bitnami/mongodb:4
+    restart: always
+
   backend:
     env_file: ${ENV_FILE}
+    restart: always
     build:
       context: ./backend
       dockerfile: ${DOCKER_FILE}
@@ -9,6 +15,12 @@ services:
         - WORK_DIR=${WORK_DIR}
     ports:
       - '${BACKEND_PORT}:80'
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: ['CMD', 'curl', 'http://localhost:80/health']
+      interval: 1m
+      timeout: 1s
 
   frontent-spa:
     env_file: ${ENV_FILE}

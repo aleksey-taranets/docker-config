@@ -1,11 +1,11 @@
 # Image
-FROM node:10-alpine
+FROM node:10
 
-# Dev environment arguments
-ARG WORK_DIR
+# Environment variables
 ENV PORT=80
 
 # Set up app directory
+ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package files
@@ -16,4 +16,5 @@ COPY yarn.lock ./
 RUN yarn
 
 # run application
+EXPOSE 80 9229
 CMD ["yarn", "run", "dev"]

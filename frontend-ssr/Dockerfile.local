@@ -1,10 +1,8 @@
 # Image
-FROM node:10-alpine
+FROM node:10
   
-# Environment arguments
-ARG WORK_DIR
-
 # Set up app directory
+ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package files
