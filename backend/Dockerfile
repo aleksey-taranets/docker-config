@@ -16,10 +16,13 @@ RUN yarn
 
 COPY . ./
 
+# lint and test before build
+RUN yarn test
+
 # Build project
 RUN yarn build
 
-#------------------------------ Production Image -------------------------------
+#------------ Production Image ------------
 FROM keymetrics/pm2:10-alpine
 
 # Environment arguments
@@ -36,7 +39,7 @@ COPY pm2.config.js ./
 # install modules
 RUN yarn --production
 
-# Copy needed files
+# Copy files from base image
 COPY --from=base /$WORK_DIR/build ./build
 
 # Ports

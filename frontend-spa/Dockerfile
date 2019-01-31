@@ -16,12 +16,12 @@ COPY . ./
 # Build project
 RUN yarn build
 
-#------------------------------ Production Image -------------------------------
+#------------ Production Image ------------
 FROM nginx
 
 # Ports
 EXPOSE 80
 
-# Copy needed files
+# Copy files from base image
 COPY nginx.config /etc/nginx/conf.d/default.conf
 COPY --from=base build /usr/share/nginx/html

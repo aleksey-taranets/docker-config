@@ -19,7 +19,7 @@ COPY . ./
 # Build project
 RUN yarn build
 
-#------------------------------ Production Image -------------------------------
+#---------- Production Image ----------
 FROM keymetrics/pm2:10-alpine
 
 # Environment arguments

@@ -41,3 +41,5 @@ services:
         - WORK_DIR=${WORK_DIR}
     ports:
       - '${SSR_PORT}:80'
+    depends_on:
+      - backend
