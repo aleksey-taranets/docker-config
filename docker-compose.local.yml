@@ -1,11 +1,11 @@
 version: '3'
 services:
-  frontent-spa:
+  frontend-spa:
     volumes:
       - './frontend-spa/public:${WORK_DIR}/public'
       - './frontend-spa/src:${WORK_DIR}/src'
 
-  frontent-ssr:
+  frontend-ssr:
     volumes:
       - './frontend-ssr/pages:${WORK_DIR}/pages'
       - './frontend-ssr/next.config.js:${WORK_DIR}/next.config.js'

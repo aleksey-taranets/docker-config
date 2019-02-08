@@ -16,12 +16,14 @@ services:
       - '${BACKEND_PORT}:80'
     depends_on:
       - mongodb
+    links:
+      - mongodb
     healthcheck:
       test: ['CMD', 'curl', 'http://localhost:80/health']
       interval: 1m
       timeout: 1s
 
-  frontent-spa:
+  frontend-spa:
     env_file: ${ENV_FILE}
     build:
       context: ./frontend-spa
@@ -31,7 +33,7 @@ services:
     ports:
       - '${SPA_PORT}:80'
 
-  frontent-ssr:
+  frontend-ssr:
     env_file: ${ENV_FILE}
     build:
       context: ./frontend-ssr
