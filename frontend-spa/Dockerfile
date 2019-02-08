@@ -23,5 +23,5 @@ FROM nginx
 EXPOSE 80
 
 # Copy files from base image
-COPY nginx.config /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=base build /usr/share/nginx/html

@@ -7,7 +7,6 @@ services:
 
   backend:
     env_file: ${ENV_FILE}
-    restart: always
     build:
       context: ./backend
       dockerfile: ${DOCKER_FILE}
