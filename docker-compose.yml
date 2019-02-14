@@ -2,11 +2,12 @@ version: '3'
 services:
   mongodb:
     env_file: ${ENV_FILE}
-    image: bitnami/mongodb:4
     restart: always
+    image: bitnami/mongodb:4
 
   backend:
     env_file: ${ENV_FILE}
+    restart: always
     build:
       context: ./backend
       dockerfile: ${DOCKER_FILE}
@@ -25,6 +26,7 @@ services:
 
   frontend-spa:
     env_file: ${ENV_FILE}
+    restart: always
     build:
       context: ./frontend-spa
       dockerfile: ${DOCKER_FILE}
@@ -35,6 +37,7 @@ services:
 
   frontend-ssr:
     env_file: ${ENV_FILE}
+    restart: always
     build:
       context: ./frontend-ssr
       dockerfile: ${DOCKER_FILE}

@@ -6,8 +6,7 @@ ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package files
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json yarn.lock ./
 
 # install modules
 RUN yarn

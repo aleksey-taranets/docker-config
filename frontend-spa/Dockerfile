@@ -5,8 +5,7 @@ FROM node:10-alpine AS base
 ARG WORK_DIR
 
 # copy package files
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json yarn.lock ./
 
 # install modules
 RUN yarn

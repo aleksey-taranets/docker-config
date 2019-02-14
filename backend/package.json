@@ -7,7 +7,7 @@
     "start": "node ./build/server.js",
     "dev": "nodemon --inspect=0.0.0.0 --watch src ./dev.js",
     "build": "rimraf ./build && babel -d ./build ./src -s",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
   "author": "",
   "license": "ISC",
