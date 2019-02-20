@@ -5,15 +5,10 @@ docker-compose \
 -f docker-compose.local.yml
 EOM
 )
-ARG1=$1;
 
-if [ -z $ARG1 ]
+if [ -z "$1" ]
 then
-  $CMD up --build
-elif [ $ARG1 = "up" ]
-then
-  shift;
-  $CMD $ARG1 --build $@
+  $CMD up --build;
 else
-  $CMD $@
+  $CMD $@;
 fi

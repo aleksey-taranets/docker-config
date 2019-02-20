@@ -15,5 +15,5 @@ COPY package.json yarn.lock ./
 RUN yarn
 
 # run application
-EXPOSE 80 9229
+EXPOSE 80 443 9229
 CMD ["yarn", "run", "dev"]

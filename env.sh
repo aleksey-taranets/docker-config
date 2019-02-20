@@ -1,25 +1,18 @@
-
 ENV=$1;
-if [ -n $ENV ] && [ -r $ENV ]
+if [ ! -z $ENV ] && [ -f $ENV ]
 then
   shift;
-  CMD="env $(cat $ENV | egrep -v "(^#.*|^$)")"
+  CMD="env $(cat $ENV | egrep -v "(^#.*|^$)")";
 else 
-  echo 'Environment file not found';
+  echo 'Environment file is not found';
   exit 1;
 fi
 
-CMD="$CMD docker-compose -p $ENV"
-ARG1=$1;
+CMD="$CMD docker-compose -p $ENV";
 
-if [ -z $ARG1 ]
+if [ -z "$1" ]
 then
-  echo $CMD;
   $CMD up --build --force-recreate
-elif [ $ARG1 = "up" ]
-then
-  shift;
-  $CMD $ARG1 --build --force-recreate $@
 else
   $CMD $@
 fi
