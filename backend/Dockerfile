@@ -6,18 +6,18 @@ ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package files
-COPY package.json yarn.lock ./
+COPY package*.json ./
 
 # install modules
-RUN yarn
+RUN npm install
 
 COPY . ./
 
 # lint and test before build
-RUN yarn test
+RUN npm run test
 
 # Build project
-RUN yarn build
+RUN npm run build
 
 #------------ Production Image ------------
 FROM keymetrics/pm2:10-alpine
@@ -27,16 +27,16 @@ ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package files
-COPY package.json yarn.lock pm2.config.js ./
+COPY package*.json pm2.config.js ./
 
 # install modules
-RUN yarn --production
+RUN npm install --production
 
 # Copy files from base image
 COPY --from=base /$WORK_DIR/build ./build
 
 # allow non-root users use < 1024 ports
-RUN apk add libcap
+RUN apk add libcap curl
 RUN setcap 'cap_net_bind_service=+ep' `which node`
 
 # add custom user 

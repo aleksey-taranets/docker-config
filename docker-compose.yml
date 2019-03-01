@@ -3,7 +3,7 @@ services:
   mongodb:
     env_file: ${ENV_FILE}
     restart: always
-    image: bitnami/mongodb:4
+    image: bitnami/mongodb:4.1
 
   backend:
     env_file: ${ENV_FILE}

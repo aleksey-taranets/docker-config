@@ -6,15 +6,15 @@ ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package files
-COPY package.json yarn.lock next.config.js ./
+COPY package*.json next.config.js ./
 
 # install modules
-RUN yarn
+RUN npm install
 
 COPY . ./
 
 # Build project
-RUN yarn build
+RUN npm run build
 
 #---------- Production Image ----------
 FROM keymetrics/pm2:10-alpine
@@ -24,10 +24,10 @@ ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package & config files
-COPY package.json yarn.lock next.config.js pm2.config.js ./
+COPY package*.json next.config.js pm2.config.js ./
 
 # install modules
-RUN yarn --production
+RUN npm install --production
 
 # Copy needed files
 COPY --from=base /$WORK_DIR/build ./build

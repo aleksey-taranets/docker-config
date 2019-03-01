@@ -6,11 +6,11 @@ ARG WORK_DIR
 WORKDIR $WORK_DIR
 
 # copy package files
-COPY package.json yarn.lock ./
+COPY package*.json ./
 
 # install modules
-RUN yarn
+RUN npm install
 
 # run application
 EXPOSE 80
-CMD ["yarn", "dev"]
+CMD ["npm", "run", "dev"]

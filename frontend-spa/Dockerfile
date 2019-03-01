@@ -5,15 +5,15 @@ FROM node:10-alpine AS base
 ARG WORK_DIR
 
 # copy package files
-COPY package.json yarn.lock ./
+COPY package*.json ./
 
 # install modules
-RUN yarn
+RUN npm install
 
 COPY . ./
 
 # Build project
-RUN yarn build
+RUN npm run build
 
 #------------ Production Image ------------
 FROM nginx

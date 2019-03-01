@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
-  res.end(`<h1>Data from backend!!</h1><p>Database connections ${dbConnections}</p><p>NODE_ENV = ${env}</p>`);
+  res.end(`<h1>Data from backend!1</h1><p>Database connections ${dbConnections}</p><p>NODE_ENV = ${env}</p>`);
 });
 
 (async (err) => {
