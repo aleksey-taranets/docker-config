@@ -16,19 +16,23 @@ Each service has docker files for the local and production environment.
 The environment uses a .env file
 
 ```sh
-./run_dev.sh
+./dev.sh
 ```
 
 Or you can run a single service (ex. only backend)
 
 ```sh
-./run_dev.sh backend
+./dev.sh up backend
 ```
 
-### Production environment
+### Production/Staging/Testing environment
 
-The environment uses a prod.env file
+Run any environments
 
 ```sh
-./run_prod.sh
+./env.sh .env.prod
+```
+
+```sh
+./env.sh .env.stg
 ```
