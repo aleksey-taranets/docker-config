@@ -36,12 +36,12 @@ RUN npm install --production
 COPY --from=base /$WORK_DIR/build ./build
 
 # allow non-root users use < 1024 ports
-RUN apk add libcap curl
-RUN setcap 'cap_net_bind_service=+ep' `which node`
+RUN apk add libcap curl && \
+    setcap 'cap_net_bind_service=+ep' `which node` && \
+    addgroup -S nodejs && \
+    adduser -S nodejs -G nodejs && \
+    chown -R nodejs:nodejs $WORK_DIR
 
-# add custom user 
-RUN addgroup -S nodejs && adduser -S nodejs -G nodejs
-RUN chown -R nodejs:nodejs $WORK_DIR
 USER nodejs
 
 # Ports
